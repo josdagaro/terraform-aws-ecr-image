@@ -14,7 +14,7 @@ which aws > /dev/null || { echo 'ERROR: aws-cli is not installed' ; exit 1; }
 
 # Connect into aws
 token=$(aws ecr get-login-password --region "$AWS_REGION")
-docker login -u AWS -p "$token" "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+docker login -u AWS -p "$token" "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com" || { echo 'ERROR: docker login' ; exit 1; }
 
 # Check that docker is installed and running
 which docker > /dev/null && docker ps > /dev/null || { echo 'ERROR: docker is not running' ; exit 1; }
