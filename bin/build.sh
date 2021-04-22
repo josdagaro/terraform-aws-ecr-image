@@ -13,7 +13,7 @@ aws_ecr_repository_url_with_tag=$2
 which aws > /dev/null || { echo 'ERROR: aws-cli is not installed' ; exit 1; }
 
 # Connect into aws
-aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+aws ecr get-login-password --region "$AWS_REGION" | docker login -u AWS -p "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
 
 # Check that docker is installed and running
 which docker > /dev/null && docker ps > /dev/null || { echo 'ERROR: docker is not running' ; exit 1; }
